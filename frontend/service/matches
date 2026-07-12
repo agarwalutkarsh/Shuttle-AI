@@ -1,0 +1,49 @@
+const baseUrl = "http://localhost:8000/match/";
+
+export const getAllMatchesByPlayerId = async (id) => {
+  try {
+    const resp = await fetch(`${baseUrl}player/${id}`);
+    if (resp.status === 200) {
+      const data = await resp.json();
+      return data;
+    }
+    return [];
+  } catch (err) {
+    return err;
+  }
+};
+
+export const createMatch = async (data) => {
+  
+  const formData = new FormData();
+  formData.append("player_id", data?.player_id);
+  formData.append("opponent", data?.opponent);
+  formData.append("match_type", data?.match_type);
+  formData.append("video", data?.video);
+  for (const pair of formData.entries()) {
+    console.log(pair[0], pair[1]);
+}
+  try {
+    const resp = await fetch(`${baseUrl}`, {
+      method: "POST",
+      body: formData
+    });
+    const respData = await resp.json();
+    return respData;
+  } catch (err) {
+    return err;
+  }
+};
+
+
+export const getMatchById = async (id) => {
+  try {
+    const resp = await fetch(`${baseUrl}${id}`);
+    if (resp.status === 200) {
+      const data = await resp.json()
+      return data
+    }
+  } catch (err) {
+    return err
+  }
+}
