@@ -196,6 +196,8 @@ shuttleai/
 
 ## How it works
 
+![Architecture diagram](/shuttleai_architecture_diagram.png)
+
 ### Processing pipeline
 
 ```
